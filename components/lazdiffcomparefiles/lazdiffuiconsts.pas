@@ -1,3 +1,12 @@
+{
+  Author: Domingo Galmés
+ *****************************************************************************
+  See the file COPYING.modifiedLGPL.txt, included in this distribution,
+  for details about the license.
+ *****************************************************************************
+
+ constant strings for the package lazdiffcomparefiles
+}
 unit lazdiffUIConsts;
 
 {$mode objfpc}{$H+}
@@ -5,7 +14,7 @@ unit lazdiffUIConsts;
 interface
 
 resourcestring
-  FORMAT_CURRENT_MENU2 = '&diff compare files...';
+  FORMAT_CURRENT_MENU2 = 'Diff compare files...';
   MENU_CMD_DESC2 = 'Compares files side by side';
   dlgTextToFind2 = 'Text to find';
   dlgReplaceWith2 = 'Replace with';
@@ -31,8 +40,7 @@ resourcestring
   lisOnlySearchForWholeWords2 = 'Only search for whole words';
   dlgRegularExpressions2 = 'Regular e&xpressions';
   lisActivateRegularExpressionSyntaxForTextAndReplaceme2 =
-    'Activate regular ' +
-    'expression syntax for text and replacement (pretty much like perl)';
+    'Activate regular ' + 'expression syntax for text and replacement (pretty much like perl)';
   lisAllowSearchingForMultipleLines2 = 'Allow searching for multiple lines';
   dlgPromptOnReplace2 = '&Prompt on replace';
   lisAskBeforeReplacingEachFoundText2 = 'Ask before replacing each found text';
@@ -60,8 +68,7 @@ resourcestring
   lisDiffDlgIgnoreIfEmptyLinesWereAdd2 = 'Ignore if empty lines were added or removed';
   lisDiffDlgIgnoreSpacesAtStartOfLine2 = 'Ignore spaces at start of line';
   lisDiffDlgIgnoreSpacesAtEndOfLine2 = 'Ignore spaces at end of line';
-  lisDiffDlgIgnoreIfLineEndCharsDiffe2 =
-    'Ignore difference in line ends (e.' + 'g. #10 = #13#10)';
+  lisDiffDlgIgnoreIfLineEndCharsDiffe2 = 'Ignore difference in line ends (e.' + 'g. #10 = #13#10)';
   lisDiffDlgIgnoreIfSpaceCharsWereAdd2 = 'Ignore amount of space chars';
   lisDiffDlgIgnoreSpaces2 = 'Ignore spaces (newline chars not included)';
   lisDiffDlgOpenDiffInEditor2 = 'Open difference in editor';
@@ -77,11 +84,11 @@ resourcestring
   lisUESearchStringNotFound2 = 'Search string ''%s'' not found!';
 
   dlgFilterAll2 = 'All files';
-  dlgFilterLazarusUnit2= 'Lazarus unit';
+  dlgFilterLazarusUnit2 = 'Lazarus unit';
   dlgFilterLazarusProject2 = 'Lazarus project';
   dlgFilterLazarusForm2 = 'Lazarus form';
   dlgFilterLazarusPackage2 = 'Lazarus package';
-  dlgFilterLazarusProjectSource2  = 'Lazarus project source';
+  dlgFilterLazarusProjectSource2 = 'Lazarus project source';
 
 implementation
 

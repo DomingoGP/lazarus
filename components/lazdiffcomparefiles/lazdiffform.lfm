@@ -1,13 +1,13 @@
 object DiffForm: TDiffForm
-  Left = 279
-  Height = 500
-  Top = 271
-  Width = 1346
+  Left = 403
+  Height = 667
+  Top = 187
+  Width = 1097
   HelpType = htKeyword
   BorderIcons = [biSystemMenu]
   Caption = 'Compare files'
-  ClientHeight = 500
-  ClientWidth = 1346
+  ClientHeight = 667
+  ClientWidth = 1097
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
@@ -16,9 +16,9 @@ object DiffForm: TDiffForm
     AnchorSideRight.Control = CloseButton
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 1127
+    Left = 878
     Height = 25
-    Top = 469
+    Top = 636
     Width = 132
     Anchors = [akRight, akBottom]
     AutoSize = True
@@ -33,9 +33,9 @@ object DiffForm: TDiffForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 1265
+    Left = 1016
     Height = 26
-    Top = 468
+    Top = 635
     Width = 75
     Anchors = [akRight, akBottom]
     AutoSize = True
@@ -53,7 +53,7 @@ object DiffForm: TDiffForm
     AnchorSideBottom.Side = asrBottom
     Left = 6
     Height = 26
-    Top = 468
+    Top = 635
     Width = 71
     Anchors = [akLeft, akBottom]
     AutoSize = True
@@ -66,17 +66,17 @@ object DiffForm: TDiffForm
   end
   object PageControl1: TPageControl
     Left = 8
-    Height = 452
+    Height = 619
     Top = 8
-    Width = 1330
+    Width = 1081
     ActivePage = tbsOptions
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabIndex = 0
     TabOrder = 3
     object tbsOptions: TTabSheet
       Caption = 'Options'
-      ClientHeight = 424
-      ClientWidth = 1322
+      ClientHeight = 591
+      ClientWidth = 1073
       object OptionsGroupBox: TCheckGroup
         AnchorSideLeft.Control = tbsOptions
         AnchorSideTop.Side = asrBottom
@@ -85,7 +85,7 @@ object DiffForm: TDiffForm
         Left = 6
         Height = 136
         Top = 120
-        Width = 1310
+        Width = 1061
         Anchors = [akTop, akLeft, akRight]
         AutoFill = True
         BorderSpacing.Around = 6
@@ -108,13 +108,13 @@ object DiffForm: TDiffForm
         Left = 6
         Height = 53
         Top = 64
-        Width = 1310
+        Width = 1061
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Around = 6
         Caption = 'Text2GroupBox'
         ClientHeight = 33
-        ClientWidth = 1306
+        ClientWidth = 1057
         TabOrder = 1
         object Text2Combobox: TComboBox
           AnchorSideLeft.Control = Text2GroupBox
@@ -123,7 +123,7 @@ object DiffForm: TDiffForm
           Left = 6
           Height = 23
           Top = 6
-          Width = 1071
+          Width = 822
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 6
           BorderSpacing.Top = 6
@@ -138,7 +138,7 @@ object DiffForm: TDiffForm
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Text2GroupBox
           AnchorSideRight.Side = asrBottom
-          Left = 1127
+          Left = 878
           Height = 19
           Top = 8
           Width = 173
@@ -155,7 +155,7 @@ object DiffForm: TDiffForm
           AnchorSideRight.Control = Text2OnlySelectionCheckBox
           AnchorSideBottom.Control = Text2Combobox
           AnchorSideBottom.Side = asrBottom
-          Left = 1083
+          Left = 834
           Height = 23
           Top = 6
           Width = 32
@@ -170,13 +170,13 @@ object DiffForm: TDiffForm
         Left = 6
         Height = 53
         Top = 6
-        Width = 1310
+        Width = 1061
         Align = alTop
         AutoSize = True
         BorderSpacing.Around = 6
         Caption = 'Text1GroupBox'
         ClientHeight = 33
-        ClientWidth = 1306
+        ClientWidth = 1057
         TabOrder = 2
         object Text1Combobox: TComboBox
           AnchorSideLeft.Control = Text1GroupBox
@@ -185,7 +185,7 @@ object DiffForm: TDiffForm
           Left = 6
           Height = 23
           Top = 6
-          Width = 1071
+          Width = 822
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 6
           BorderSpacing.Top = 6
@@ -200,7 +200,7 @@ object DiffForm: TDiffForm
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Text1GroupBox
           AnchorSideRight.Side = asrBottom
-          Left = 1127
+          Left = 878
           Height = 19
           Top = 8
           Width = 173
@@ -217,7 +217,7 @@ object DiffForm: TDiffForm
           AnchorSideRight.Control = Text1OnlySelectionCheckBox
           AnchorSideBottom.Control = Text1Combobox
           AnchorSideBottom.Side = asrBottom
-          Left = 1083
+          Left = 834
           Height = 23
           Top = 6
           Width = 32
@@ -243,8 +243,8 @@ object DiffForm: TDiffForm
         AnchorSideBottom.Control = CloseButton
         Left = 6
         Height = 24
-        Top = 397
-        Width = 1180
+        Top = 564
+        Width = 931
         Anchors = [akLeft, akRight, akBottom]
         BorderSpacing.Around = 6
         Step = 0
@@ -254,9 +254,9 @@ object DiffForm: TDiffForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Owner
         AnchorSideRight.Side = asrBottom
-        Left = 1202
+        Left = 953
         Height = 25
-        Top = 396
+        Top = 563
         Width = 114
         Anchors = [akRight, akBottom]
         AutoSize = True
@@ -1599,16 +1599,16 @@ object DiffForm: TDiffForm
     end
     object tbsPatch: TTabSheet
       Caption = 'Patch'
-      ClientHeight = 500
-      ClientWidth = 848
+      ClientHeight = 424
+      ClientWidth = 1322
       inline DiffSynEdit: TSynEdit
         AnchorSideLeft.Control = tbsPatch
         AnchorSideRight.Control = tbsPatch
         AnchorSideRight.Side = asrBottom
         Left = 6
-        Height = 483
+        Height = 407
         Top = 6
-        Width = 836
+        Width = 1310
         Align = alTop
         BorderSpacing.Around = 6
         Anchors = [akTop, akLeft, akRight, akBottom]

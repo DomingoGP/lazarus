@@ -1,0 +1,307 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: lazdiffuiconsts.dlgcasesensitive2
+msgid "&Case sensitive"
+msgstr ""
+
+#: lazdiffuiconsts.dlgdirection2
+msgid "Direction"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfilterall2
+msgid "All files"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfilterlazarusform2
+msgid "Lazarus form"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfilterlazaruspackage2
+msgid "Lazarus package"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfilterlazarusproject2
+msgid "Lazarus project"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfilterlazarusprojectsource2
+msgid "Lazarus project source"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfilterlazarusunit2
+msgid "Lazarus unit"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfrombeginning2
+msgid "From b&eginning"
+msgstr ""
+
+#: lazdiffuiconsts.dlgfromcursor2
+msgid "&From cursor"
+msgstr ""
+
+#: lazdiffuiconsts.dlgglobal2
+msgid "&Global"
+msgstr ""
+
+#: lazdiffuiconsts.dlgpromptonreplace2
+msgid "&Prompt on replace"
+msgstr ""
+
+#: lazdiffuiconsts.dlgregularexpressions2
+msgid "Regular e&xpressions"
+msgstr ""
+
+#: lazdiffuiconsts.dlgreplaceall2
+msgid "Replace &All"
+msgstr ""
+
+#: lazdiffuiconsts.dlgreplacewith2
+msgid "Replace with"
+msgstr ""
+
+#: lazdiffuiconsts.dlgseachdirectorynotfound2
+#, object-pascal-format
+msgid "Search directory \"%s\" not found."
+msgstr ""
+
+#: lazdiffuiconsts.dlgsearchabort2
+msgid "Search terminated by user."
+msgstr ""
+
+#: lazdiffuiconsts.dlgsearchcaption2
+msgid "Searching ..."
+msgstr ""
+
+#: lazdiffuiconsts.dlgsearchscope2
+msgid "Search scope"
+msgstr ""
+
+#: lazdiffuiconsts.dlgselectedtext2
+msgid "&Selected text"
+msgstr ""
+
+#: lazdiffuiconsts.dlgsrorigin2
+msgid "Origin"
+msgstr ""
+
+#: lazdiffuiconsts.dlgtexttofind2
+msgid "Text to find"
+msgstr ""
+
+#: lazdiffuiconsts.dlgwholewordsonly2
+msgid "&Whole words only"
+msgstr ""
+
+#: lazdiffuiconsts.format_current_menu2
+msgctxt "lazdiffuiconsts.format_current_menu2"
+msgid "Diff compare files..."
+msgstr ""
+
+#: lazdiffuiconsts.lisactivateregularexpressionsyntaxfortextandreplaceme2
+msgid "Activate regular expression syntax for text and replacement (pretty much like perl)"
+msgstr ""
+
+#: lazdiffuiconsts.lisallowsearchingformultiplelines2
+msgid "Allow searching for multiple lines"
+msgstr ""
+
+#: lazdiffuiconsts.lisaskbeforereplacingeachfoundtext2
+msgid "Ask before replacing each found text"
+msgstr ""
+
+#: lazdiffuiconsts.lisautocompletionoff2
+msgid "Enable autocomplete off"
+msgstr ""
+
+#: lazdiffuiconsts.lisautocompletionon2
+msgid "Enable autocomplete on"
+msgstr ""
+
+#: lazdiffuiconsts.lisbtnfind2
+msgctxt "lazdiffuiconsts.lisbtnfind2"
+msgid "Find"
+msgstr ""
+
+#: lazdiffuiconsts.lisbtnreplace2
+msgctxt "lazdiffuiconsts.lisbtnreplace2"
+msgid "Replace"
+msgstr ""
+
+#: lazdiffuiconsts.liscaptioncomparefiles2
+msgctxt "lazdiffuiconsts.liscaptioncomparefiles2"
+msgid "Compare files"
+msgstr ""
+
+#: lazdiffuiconsts.lisclose2
+msgctxt "lazdiffuiconsts.lisclose2"
+msgid "Close"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffbtncompare2
+msgctxt "lazdiffuiconsts.lisdiffbtncompare2"
+msgid "Compare"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffbtnfirst2
+msgctxt "lazdiffuiconsts.lisdiffbtnfirst2"
+msgid "First"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffbtnlast2
+msgctxt "lazdiffuiconsts.lisdiffbtnlast2"
+msgid "Last"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffbtnnext2
+msgctxt "lazdiffuiconsts.lisdiffbtnnext2"
+msgid "Next"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffbtnprevious2
+msgctxt "lazdiffuiconsts.lisdiffbtnprevious2"
+msgid "Previous"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgcaseinsensitive2
+msgctxt "lazdiffuiconsts.lisdiffdlgcaseinsensitive2"
+msgid "Case Insensitive"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgfile12
+msgctxt "lazdiffuiconsts.lisdiffdlgfile12"
+msgid "File1"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgfile22
+msgctxt "lazdiffuiconsts.lisdiffdlgfile22"
+msgid "File2"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgignoreifemptylineswereadd2
+msgctxt "lazdiffuiconsts.lisdiffdlgignoreifemptylineswereadd2"
+msgid "Ignore if empty lines were added or removed"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgignoreiflineendcharsdiffe2
+msgctxt "lazdiffuiconsts.lisdiffdlgignoreiflineendcharsdiffe2"
+msgid "Ignore difference in line ends (e.g. #10 = #13#10)"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgignoreifspacecharswereadd2
+msgctxt "lazdiffuiconsts.lisdiffdlgignoreifspacecharswereadd2"
+msgid "Ignore amount of space chars"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgignorespaces2
+msgctxt "lazdiffuiconsts.lisdiffdlgignorespaces2"
+msgid "Ignore spaces (newline chars not included)"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgignorespacesatendofline2
+msgctxt "lazdiffuiconsts.lisdiffdlgignorespacesatendofline2"
+msgid "Ignore spaces at end of line"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgignorespacesatstartofline2
+msgctxt "lazdiffuiconsts.lisdiffdlgignorespacesatstartofline2"
+msgid "Ignore spaces at start of line"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgonlyselection2
+msgctxt "lazdiffuiconsts.lisdiffdlgonlyselection2"
+msgid "Only selection"
+msgstr ""
+
+#: lazdiffuiconsts.lisdiffdlgopendiffineditor2
+msgctxt "lazdiffuiconsts.lisdiffdlgopendiffineditor2"
+msgid "Open difference in editor"
+msgstr ""
+
+#: lazdiffuiconsts.lisdifftabcompare2
+msgctxt "lazdiffuiconsts.lisdifftabcompare2"
+msgid "Compare"
+msgstr ""
+
+#: lazdiffuiconsts.lisdifftaboptions2
+msgctxt "lazdiffuiconsts.lisdifftaboptions2"
+msgid "Options"
+msgstr ""
+
+#: lazdiffuiconsts.lisdifftabpatch2
+msgctxt "lazdiffuiconsts.lisdifftabpatch2"
+msgid "Patch"
+msgstr ""
+
+#: lazdiffuiconsts.lisdistinguishbigandsmalllettersegaanda2
+msgid "Distinguish big and small letters e.g. A and a"
+msgstr ""
+
+#: lazdiffuiconsts.lisfindfilemultilinepattern2
+msgid "&Multiline pattern"
+msgstr ""
+
+#: lazdiffuiconsts.lisfrbackwardsearch2
+msgid "&Backward search"
+msgstr ""
+
+#: lazdiffuiconsts.lisfrforwardsearch2
+msgid "Forwar&d search"
+msgstr ""
+
+#: lazdiffuiconsts.lismenufind2
+msgctxt "lazdiffuiconsts.lismenufind2"
+msgid "Find"
+msgstr ""
+
+#: lazdiffuiconsts.lismenuhelp2
+msgctxt "lazdiffuiconsts.lismenuhelp2"
+msgid "Help"
+msgstr ""
+
+#: lazdiffuiconsts.lisonlysearchforwholewords2
+msgid "Only search for whole words"
+msgstr ""
+
+#: lazdiffuiconsts.lisopenexistingfile2
+msgctxt "lazdiffuiconsts.lisopenexistingfile2"
+msgid "Open existing file"
+msgstr ""
+
+#: lazdiffuiconsts.lisoptions2
+msgctxt "lazdiffuiconsts.lisoptions2"
+msgid "Options"
+msgstr ""
+
+#: lazdiffuiconsts.lisreplace2
+msgctxt "lazdiffuiconsts.lisreplace2"
+msgid "Replace"
+msgstr ""
+
+#: lazdiffuiconsts.lissmatches2
+msgid "Matches"
+msgstr ""
+
+#: lazdiffuiconsts.lisssearching2
+msgid "Searching"
+msgstr ""
+
+#: lazdiffuiconsts.lisssearchtext2
+msgid "Search text"
+msgstr ""
+
+#: lazdiffuiconsts.lisueerrorinregularexpression2
+msgid "Error in regular expression"
+msgstr ""
+
+#: lazdiffuiconsts.lisuesearchstringnotfound2
+#, object-pascal-format
+msgctxt "lazdiffuiconsts.lisuesearchstringnotfound2"
+msgid "Search string '%s' not found!"
+msgstr ""
+
+#: lazdiffuiconsts.menu_cmd_desc2
+msgid "Compares files side by side"
+msgstr ""
+

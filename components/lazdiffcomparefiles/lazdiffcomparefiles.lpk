@@ -4,6 +4,7 @@
     <PathDelim Value="\"/>
     <Name Value="lazdiffcomparefiles"/>
     <Type Value="RunAndDesignTime"/>
+    <Author Value="Domingo Galmés"/>
     <CompilerOptions>
       <Version Value="11"/>
       <PathDelim Value="\"/>
@@ -11,6 +12,8 @@
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
+    <Description Value="File compare tool package for the lazarus IDE."/>
+    <Version Major="1"/>
     <Files>
       <Item>
         <Filename Value="lazdiffregisteride.pas"/>
@@ -28,6 +31,10 @@
       <Item>
         <Filename Value="lazdiffuiconsts.pas"/>
         <UnitName Value="lazdiffUIConsts"/>
+      </Item>
+      <Item>
+        <Filename Value="lazdiffutils.pas"/>
+        <UnitName Value="lazdiffutils"/>
       </Item>
     </Files>
     <i18n>

@@ -5,7 +5,9 @@
 
  ***************************************************************************/
 
-  Author: Mattias Gaertner
+  Author: Mattias Gaertner    (ide/findreplacedialog.pas)
+
+  Changed by Domingo Galmés removed IDE dependencies.
 
  *****************************************************************************
   See the file COPYING.modifiedLGPL.txt, included in this distribution,

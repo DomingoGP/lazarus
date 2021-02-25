@@ -9,7 +9,7 @@ interface
 
 uses
   lazdiffregisteride, lazdiffform, findreplacedialog2, lazdiffUIConsts, 
-  LazarusPackageIntf;
+  lazdiffutils, LazarusPackageIntf;
 
 implementation
 

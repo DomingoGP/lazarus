@@ -43,6 +43,7 @@ object LazFindReplaceDialog2: TLazFindReplaceDialog2
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Right = 6
     GroupIndex = 1
+    Visible = False
     OnClick = EnableAutoCompleteSpeedButtonClick
     ShowHint = True
     ParentShowHint = False
