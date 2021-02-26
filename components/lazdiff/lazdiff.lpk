@@ -13,6 +13,12 @@
     <Description Value="Diff unit from Angus Jhonson."/>
     <License Value="See diff.pas for license."/>
     <Version Major="1"/>
+    <Files>
+      <Item>
+        <Filename Value="Diff.pas"/>
+        <UnitName Value="Diff"/>
+      </Item>
+    </Files>
     <RequiredPkgs>
       <Item>
         <PackageName Value="LCL"/>

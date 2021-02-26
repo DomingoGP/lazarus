@@ -715,10 +715,6 @@
         <UnitName Value="JcfUIConsts"/>
       </Item>
       <Item>
-        <Filename Value="..\..\ReadWrite\Diff.pas"/>
-        <UnitName Value="Diff"/>
-      </Item>
-      <Item>
         <Filename Value="..\..\ReadWrite\diffmerge.pas"/>
         <UnitName Value="diffmerge"/>
       </Item>
@@ -728,6 +724,9 @@
       <OutDir Value="languages"/>
     </i18n>
     <RequiredPkgs>
+      <Item>
+        <PackageName Value="lazdiff"/>
+      </Item>
       <Item>
         <PackageName Value="IDEIntf"/>
       </Item>
