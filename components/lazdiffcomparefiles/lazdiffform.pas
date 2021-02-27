@@ -214,11 +214,10 @@ const
   IgnoreCaseCheckBox = 0;
   IgnoreEmptyLineChangesCheckBox = 1;
   IgnoreHeadingSpacesCheckBox = 2;
-  IgnoreLineEndsCheckBox = 3;
-  IgnoreSpaceCharAmountCheckBox = 4;
-  IgnoreSpaceCharsCheckBox = 5;
-  IgnoreTrailingSpacesCheckBox = 6;
-
+  IgnoreSpaceCharAmountCheckBox = 3;
+  IgnoreSpaceCharsCheckBox = 4;
+  IgnoreTrailingSpacesCheckBox = 5;
+  //IgnoreLineEndsCheckBox = 6;          //we use stringlist to read files and end of lines are lost.
 
 implementation
 
@@ -233,6 +232,8 @@ procedure ShowDiffDialog;
 var
   DiffDlg: TDiffForm;
 begin
+  //DiffDlg:=nil;
+  //IDEWindowCreators.CreateForm(DiffDlg, TDiffForm, False, Application);
   DiffDlg := TDiffForm.Create(nil);
   try
     DiffDlg.Init;
@@ -817,9 +818,9 @@ begin
     Items.Add(lisDiffDlgIgnoreIfEmptyLinesWereAdd2);
     Items.Add(lisDiffDlgIgnoreSpacesAtStartOfLine2);
     Items.Add(lisDiffDlgIgnoreSpacesAtEndOfLine2);
-    Items.Add(lisDiffDlgIgnoreIfLineEndCharsDiffe2);
     Items.Add(lisDiffDlgIgnoreIfSpaceCharsWereAdd2);
     Items.Add(lisDiffDlgIgnoreSpaces2);
+    //Items.Add(lisDiffDlgIgnoreIfLineEndCharsDiffe2);
   end;
 
   // buttons
@@ -985,7 +986,7 @@ begin
       OptionsGroupBox.Checked[IgnoreCaseCheckBox] :=Config.GetValue('Options/IgnoreCase', False);
       OptionsGroupBox.Checked[IgnoreEmptyLineChangesCheckBox] :=Config.GetValue('Options/IgnoreEmptyLineChanges', False);
       OptionsGroupBox.Checked[IgnoreHeadingSpacesCheckBox] := Config.GetValue('Options/IgnoreHeadingSpaces', False);
-      OptionsGroupBox.Checked[IgnoreLineEndsCheckBox] := Config.GetValue('Options/IgnoreLineEnds', False);
+      //OptionsGroupBox.Checked[IgnoreLineEndsCheckBox] := Config.GetValue('Options/IgnoreLineEnds', False);
       OptionsGroupBox.Checked[IgnoreSpaceCharAmountCheckBox] := Config.GetValue('Options/IgnoreSpaceCharAmount', False);
       OptionsGroupBox.Checked[IgnoreSpaceCharsCheckBox] := Config.GetValue('Options/IgnoreSpaceChars', False);
       OptionsGroupBox.Checked[IgnoreTrailingSpacesCheckBox] := Config.GetValue('Options/IgnoreTrailingSpaces', False);
@@ -1018,8 +1019,8 @@ begin
     Include(Result, tdfIgnoreEmptyLineChanges);
   if OptionsGroupBox.Checked[IgnoreHeadingSpacesCheckBox] then
     Include(Result, tdfIgnoreHeadingSpaces);
-  if OptionsGroupBox.Checked[IgnoreLineEndsCheckBox] then
-    Include(Result, tdfIgnoreLineEnds);
+  //if OptionsGroupBox.Checked[IgnoreLineEndsCheckBox] then
+  //  Include(Result, tdfIgnoreLineEnds);
   if OptionsGroupBox.Checked[IgnoreSpaceCharAmountCheckBox] then
     Include(Result, tdfIgnoreSpaceCharAmount);
   if OptionsGroupBox.Checked[IgnoreSpaceCharsCheckBox] then
