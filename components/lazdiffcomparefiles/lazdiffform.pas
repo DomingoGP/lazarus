@@ -46,13 +46,16 @@ uses
   // LazUtils
   FileUtil, IntegerList,
   // SynEdit
-  SynEdit, SynHighlighterDiff,SynEditTypes,SynHighlighterPas,
+  SynEdit, SynHighlighterDiff, SynEditTypes, SynHighlighterPas,
   Graphics, SynGutterLineNumber,
   // IdeIntf
   IDEWindowIntf, IDEHelpIntf, IDEImagesIntf,
   SrcEditorIntf,
-  diff,lazdiffutils,
+  diff, lazdiffutils,
   Types;
+
+const
+  DiffFormWindowName = 'IDEDiffCompareFilesWindow';
 
 type
 
@@ -64,8 +67,7 @@ type
     Editor: TSourceEditorInterface;
     SelectionAvailable: boolean;
   public
-    constructor Create(const NewName: string; NewEditor: TSourceEditorInterface;
-      NewSelectionAvailable: boolean);
+    constructor Create(const NewName: string; NewEditor: TSourceEditorInterface; NewSelectionAvailable: boolean);
   end;
 
   { TAvailableDiffFiles }
@@ -79,8 +81,7 @@ type
     function Add(DiffFile: TAvailableDiffFile): integer;
     function IndexOfName(const Name: string): integer;
   public
-    property Items[Index: integer]: TAvailableDiffFile read GetItems write SetItems;
-      default;
+    property Items[Index: integer]: TAvailableDiffFile read GetItems write SetItems; default;
   end;
 
 
@@ -99,8 +100,7 @@ type
     procedure SetFileName(aFileName: string);
     procedure UpdateIndex;
   public
-    constructor Create(aOwner: TDiffForm; aCombobox: TComboBox;
-      aOnlySelCheckBox: TCheckBox);
+    constructor Create(aOwner: TDiffForm; aCombobox: TComboBox; aOnlySelCheckBox: TCheckBox);
   end;
 
   { TDiffForm }
@@ -156,8 +156,7 @@ type
     procedure btnpreviousClick(Sender: TObject);
     procedure CancelScanningButtonClick(Sender: TObject);
     procedure CloseButtonClick(Sender: TObject);
-    procedure edSpecialLineColors(Sender: TObject; Line: integer;
-      var Special: boolean; var FG, BG: TColor);
+    procedure edSpecialLineColors(Sender: TObject; Line: integer; var Special: boolean; var FG, BG: TColor);
     procedure edLeftStatusChange(Sender: TObject; Changes: TSynStatusChanges);
     procedure edRightStatusChange(Sender: TObject; Changes: TSynStatusChanges);
     procedure FileOpenClick(Sender: TObject);
@@ -165,12 +164,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure HelpButtonClick(Sender: TObject);
     procedure OnChangeFlag(Sender: TObject);
-    procedure LeftSynGutterLineNumber1FormatLineNumber(
-      Sender: TSynGutterLineNumber;
+    procedure LeftSynGutterLineNumber1FormatLineNumber(Sender: TSynGutterLineNumber;
       ALine: integer; out AText: string; const ALineInfo: TSynEditGutterLineInfo);
     procedure OpenInEditorButtonClick(Sender: TObject);
-    procedure RightSynGutterLineNumber1FormatLineNumber(
-      Sender: TSynGutterLineNumber;
+    procedure RightSynGutterLineNumber1FormatLineNumber(Sender: TSynGutterLineNumber;
       ALine: integer; out AText: string; const ALineInfo: TSynEditGutterLineInfo);
     procedure tbsCompareResize(Sender: TObject);
     procedure Text1ComboboxChange(Sender: TObject);
@@ -194,7 +191,7 @@ type
     fLeftSearchOptions: TSynSearchOptions;
     fLeftSearchText: string;
 
-    fFile1Index:integer;
+    fFile1Index: integer;
     procedure SetupComponents;
     procedure UpdateDiff;
     function GetNomalizedKindType(aLineIndex: integer): TChangeKind;
@@ -209,6 +206,7 @@ type
   end;
 
 procedure ShowDiffDialog;
+procedure CreateIDEDiffForm(Sender: TObject; aFormName: string; var AForm: TCustomForm; DoDisableAutoSizing: boolean);
 
 const
   IgnoreCaseCheckBox = 0;
@@ -217,7 +215,7 @@ const
   IgnoreSpaceCharAmountCheckBox = 3;
   IgnoreSpaceCharsCheckBox = 4;
   IgnoreTrailingSpacesCheckBox = 5;
-  //IgnoreLineEndsCheckBox = 6;          //we use stringlist to read files and end of lines are lost.
+//IgnoreLineEndsCheckBox = 6;          //we use stringlist to read files and end of lines are lost.
 
 implementation
 
@@ -226,28 +224,33 @@ implementation
 uses
   LCLIntf, dateutils, crc, strutils
   , FindReplaceDialog2
-  , lazdiffUIConsts,LazConfigStorage,BaseIDEIntf,IDEMsgIntf,IDEExternToolIntf,lazideintf,projectintf;
+  , lazdiffUIConsts, LazConfigStorage, BaseIDEIntf, IDEMsgIntf, IDEExternToolIntf, lazideintf, projectintf;
+
+var
+  gWindowCount: integer = 0;
+
+procedure CreateIDEDiffForm(Sender: TObject; aFormName: string; var AForm: TCustomForm; DoDisableAutoSizing: boolean);
+var
+  lForm: TDiffForm;
+begin
+  if CompareText(aFormName, DiffFormWindowName) <> 0 then exit;
+  lForm := nil;
+  IDEWindowCreators.CreateForm(lForm, TDiffForm, DoDisableAutoSizing, LazarusIDE.OwningComponent);
+  Inc(gWindowCount);
+  //Name required for docking
+  lForm.Name := DiffFormWindowName + IntToStr(gWindowCount);   // to allow multiple compare windows name must be diferent.
+  AForm := lForm;
+end;
+
 
 procedure ShowDiffDialog;
-var
-  DiffDlg: TDiffForm;
 begin
-  //DiffDlg:=nil;
-  //IDEWindowCreators.CreateForm(DiffDlg, TDiffForm, False, Application);
-  DiffDlg := TDiffForm.Create(nil);
-  try
-    DiffDlg.Init;
-    //Result :=  DiffDlg.ShowModal;
-    //    DiffDlg.Show;
-    IDEWindowCreators.ShowForm(DiffDlg, False);
-  finally
-  end;
+  IDEWindowCreators.ShowForm(DiffFormWindowName, True);
 end;
 
 { TSelectedDiffFile }
 
-constructor TSelectedDiffFile.Create(aOwner: TDiffForm; aCombobox: TComboBox;
-  aOnlySelCheckBox: TCheckBox);
+constructor TSelectedDiffFile.Create(aOwner: TDiffForm; aCombobox: TComboBox; aOnlySelCheckBox: TCheckBox);
 begin
   inherited Create;
   fOwner := aOwner;
@@ -255,8 +258,7 @@ begin
   fOnlySelCheckBox := aOnlySelCheckBox;
 end;
 
-procedure TSelectedDiffFile.GetLines(ALines: TStrings; var aFirstLine: integer;
-  var aFileName: string);
+procedure TSelectedDiffFile.GetLines(ALines: TStrings; var aFirstLine: integer; var aFileName: string);
 begin
   aFirstLine := 1;
   aFileName := '';
@@ -318,18 +320,19 @@ end;
 
 constructor TDiffForm.Create(TheOwner: TComponent);
 var
-  i:integer;
+  i: integer;
   SrcEdit: TSourceEditorInterface;
   ActiveEdit: TSourceEditorInterface;
 begin
   inherited Create(TheOwner);
   fUpdating := False;
-  fSelectedFile1 := TSelectedDiffFile.Create(Self, Text1Combobox,
-    Text1OnlySelectionCheckBox);
-  fSelectedFile2 := TSelectedDiffFile.Create(Self, Text2Combobox,
-    Text2OnlySelectionCheckBox);
-  Caption := lisCaptionCompareFiles2;
-  IDEDialogLayoutList.ApplyLayout(Self, 600, 500);
+  fSelectedFile1 := TSelectedDiffFile.Create(Self, Text1Combobox, Text1OnlySelectionCheckBox);
+  fSelectedFile2 := TSelectedDiffFile.Create(Self, Text2Combobox, Text2OnlySelectionCheckBox);
+  if gWindowCount>0 then
+    Caption:=lisCaptionCompareFiles2+' '+IntToStr(gWindowCount+1)
+  else
+    Caption := lisCaptionCompareFiles2;
+  //  IDEDialogLayoutList.ApplyLayout(Self, 600, 500);
   SetupComponents;
   fDiff := TDiff.Create(nil);
   fLeftLines := TStringList.Create;
@@ -337,18 +340,17 @@ begin
   fLeftTextHashes := TCardinalList.Create;
   fRightTextHashes := TCardinalList.Create;
   fAvailableFiles := TAvailableDiffFiles.Create;
-  ActiveEdit:=SourceEditorManagerIntf.ActiveEditor;
-  fFile1Index:=0;
-   // Get available files
-   for i := 0 to SourceEditorManagerIntf.SourceEditorCount - 1 do
-   begin
-     SrcEdit := SourceEditorManagerIntf.SourceEditors[i];
-     fAvailableFiles.Add(TAvailableDiffFile.Create(SrcEdit.PageName, SrcEdit,
-       SrcEdit.SelectionAvailable));
-     if ActiveEdit=SrcEdit then
-       fFile1Index:=i;
-   end;
-
+  ActiveEdit := SourceEditorManagerIntf.ActiveEditor;
+  fFile1Index := 0;
+  // Get available files
+  for i := 0 to SourceEditorManagerIntf.SourceEditorCount - 1 do
+  begin
+    SrcEdit := SourceEditorManagerIntf.SourceEditors[i];
+    fAvailableFiles.Add(TAvailableDiffFile.Create(SrcEdit.PageName, SrcEdit, SrcEdit.SelectionAvailable));
+    if ActiveEdit = SrcEdit then
+      fFile1Index := i;
+  end;
+  Init;
 end;
 
 destructor TDiffForm.Destroy;
@@ -372,13 +374,12 @@ end;
 
 function MyShowDot(Sender: TSynGutterLineNumber; AEditor: TSynEdit; ALine: integer): boolean;
 begin
-  Result := ((ALine mod Sender.ShowOnlyLineNumbersMultiplesOf) <> 0) and
-    (ALine <> AEditor.CaretY) and (ALine <> 1) and (ALine <> AEditor.Lines.Count);
+  Result := ((ALine mod Sender.ShowOnlyLineNumbersMultiplesOf) <> 0) and (ALine <> AEditor.CaretY) and
+    (ALine <> 1) and (ALine <> AEditor.Lines.Count);
 end;
 
-procedure TDiffForm.LeftSynGutterLineNumber1FormatLineNumber(
-  Sender: TSynGutterLineNumber; ALine: integer; out AText: string;
-  const ALineInfo: TSynEditGutterLineInfo);
+procedure TDiffForm.LeftSynGutterLineNumber1FormatLineNumber(Sender: TSynGutterLineNumber;
+  ALine: integer; out AText: string; const ALineInfo: TSynEditGutterLineInfo);
 begin
   if (FDiff.Count > 0) and (aLine > 0) and (aLine <= FDiff.Count) then
   begin
@@ -396,13 +397,12 @@ end;
 procedure TDiffForm.OpenInEditorButtonClick(Sender: TObject);
 begin
   //NewDiffFilename:=CreateSrcEditPageName('','FileDifference.diff', nil);
-  LazarusIDE.DoNewEditorFile(FileDescriptorText,'FileDifference.diff',DiffSynEdit.Text,
-                            [nfOpenInEditor,nfIsNotPartOfProject]);
+  LazarusIDE.DoNewEditorFile(FileDescriptorText, 'FileDifference.diff', DiffSynEdit.Text,
+    [nfOpenInEditor, nfIsNotPartOfProject]);
 end;
 
-procedure TDiffForm.RightSynGutterLineNumber1FormatLineNumber(
-  Sender: TSynGutterLineNumber; ALine: integer; out AText: string;
-  const ALineInfo: TSynEditGutterLineInfo);
+procedure TDiffForm.RightSynGutterLineNumber1FormatLineNumber(Sender: TSynGutterLineNumber;
+  ALine: integer; out AText: string; const ALineInfo: TSynEditGutterLineInfo);
 begin
   if (FDiff.Count > 0) and (aLine > 0) and (aLine <= FDiff.Count) then
   begin
@@ -517,8 +517,7 @@ end;
 
 
 //  *****************    search        ***********************
-procedure DoFind(aEditor: TSynEdit;
-  const aSearchText: string; aOptions: TSynSearchOptions; aForward: boolean);
+procedure DoFind(aEditor: TSynEdit; const aSearchText: string; aOptions: TSynSearchOptions; aForward: boolean);
 var
   StartPoint: TPoint;
 begin
@@ -550,8 +549,7 @@ begin
   end;
 end;
 
-procedure DoFindDialog(aEditor: TSynEdit;
-  var aSearchText: string; var aSearchOptions: TSynSearchOptions);
+procedure DoFindDialog(aEditor: TSynEdit; var aSearchText: string; var aSearchOptions: TSynSearchOptions);
 var
   LazFindReplaceDialog2: TLazFindReplaceDialog2;
 begin
@@ -707,8 +705,7 @@ begin
   end;
 end;
 
-procedure TDiffForm.edSpecialLineColors(Sender: TObject; Line: integer;
-  var Special: boolean; var FG, BG: TColor);
+procedure TDiffForm.edSpecialLineColors(Sender: TObject; Line: integer; var Special: boolean; var FG, BG: TColor);
 var
   r, g, b: byte;
 const
@@ -728,8 +725,8 @@ begin
       ckAdd:
       begin
         BG := COLOR_ADDED_LINE;
-        if (tdfIgnoreEmptyLineChanges in fCurrentOptions) and
-          (fDiff.Compares[Line - 1].int2 = EMPTY_LINE_HASH) then
+        if (tdfIgnoreEmptyLineChanges in fCurrentOptions) and (fDiff.Compares[Line - 1].int2 =
+          EMPTY_LINE_HASH) then
         begin
           BG := COLOR_ADDED_EMPTY_LINE;
         end;
@@ -738,8 +735,8 @@ begin
       begin
         BG := COLOR_DELETED_LINE;
         // if (tdfIgnoreEmptyLineChanges in fCurrentOptions) and (edLeft.Lines[fDiff.Compares[Line-1].oldIndex1]='') then
-        if (tdfIgnoreEmptyLineChanges in fCurrentOptions) and
-          (fDiff.Compares[Line - 1].int1 = EMPTY_LINE_HASH) then
+        if (tdfIgnoreEmptyLineChanges in fCurrentOptions) and (fDiff.Compares[Line - 1].int1 =
+          EMPTY_LINE_HASH) then
         begin
           BG := COLOR_DELETED_EMPTY_LINE;
         end;
@@ -783,7 +780,7 @@ end;
 
 procedure TDiffForm.HelpButtonClick(Sender: TObject);
 begin
-//  LazarusHelp.ShowHelpForIDEControl(Self);
+  //  LazarusHelp.ShowHelpForIDEControl(Self);
 end;
 
 procedure TDiffForm.Text1ComboboxChange(Sender: TObject);
@@ -798,7 +795,7 @@ end;
 
 procedure TDiffForm.SetupComponents;
 const
-  GetAllFilesMask2='*.*';
+  GetAllFilesMask2 = '*.*';
 begin
   // text 1
   Text1GroupBox.Caption := lisDiffDlgFile12;
@@ -834,12 +831,11 @@ begin
     IDEImages.AssignImage(OpenInEditorButton, 'laz_open');
   // dialogs
   dlgOpen.Title := lisOpenExistingFile2;
-  dlgOpen.Filter:=dlgFilterAll2+' ('+GetAllFilesMask2+')|'+GetAllFilesMask2
-                 +'|'+dlgFilterLazarusUnit2+' (*.pas;*.pp)|*.pas;*.pp'
-                 +'|'+dlgFilterLazarusProject2+' (*.lpi)|*.lpi'
-                 +'|'+dlgFilterLazarusForm2+' (*.lfm;*.dfm)|*.lfm;*.dfm'
-                 +'|'+dlgFilterLazarusPackage2+' (*.lpk)|*.lpk'
-                 +'|'+dlgFilterLazarusProjectSource2+' (*.lpr)|*.lpr';
+  dlgOpen.Filter := dlgFilterAll2 + ' (' + GetAllFilesMask2 + ')|' + GetAllFilesMask2 +
+    '|' + dlgFilterLazarusUnit2 + ' (*.pas;*.pp)|*.pas;*.pp' + '|' + dlgFilterLazarusProject2 +
+    ' (*.lpi)|*.lpi' + '|' + dlgFilterLazarusForm2 + ' (*.lfm;*.dfm)|*.lfm;*.dfm'
+    + '|' + dlgFilterLazarusPackage2 + ' (*.lpk)|*.lpk' + '|' +
+    dlgFilterLazarusProjectSource2 + ' (*.lpr)|*.lpr';
   //tabsheets
   tbsOptions.Caption := lisDiffTabOptions2;
   tbsCompare.Caption := lisDiffTabCompare2;
@@ -939,16 +935,11 @@ begin
       Config.SetDeleteValue('Options/IgnoreCase', tdfIgnoreCase in DiffFlags, False);
       Config.SetDeleteValue('Options/IgnoreEmptyLineChanges',
         tdfIgnoreEmptyLineChanges in DiffFlags, False);
-      Config.SetDeleteValue('Options/IgnoreHeadingSpaces', tdfIgnoreHeadingSpaces in
-        DiffFlags, False);
-      Config.SetDeleteValue('Options/IgnoreLineEnds', tdfIgnoreLineEnds in
-        DiffFlags, False);
-      Config.SetDeleteValue('Options/IgnoreSpaceCharAmount', tdfIgnoreSpaceCharAmount in
-        DiffFlags, False);
-      Config.SetDeleteValue('Options/IgnoreSpaceChars', tdfIgnoreSpaceChars in
-        DiffFlags, False);
-      Config.SetDeleteValue('Options/IgnoreTrailingSpaces', tdfIgnoreTrailingSpaces in
-        DiffFlags, False);
+      Config.SetDeleteValue('Options/IgnoreHeadingSpaces', tdfIgnoreHeadingSpaces in DiffFlags, False);
+      Config.SetDeleteValue('Options/IgnoreLineEnds', tdfIgnoreLineEnds in DiffFlags, False);
+      Config.SetDeleteValue('Options/IgnoreSpaceCharAmount', tdfIgnoreSpaceCharAmount in DiffFlags, False);
+      Config.SetDeleteValue('Options/IgnoreSpaceChars', tdfIgnoreSpaceChars in DiffFlags, False);
+      Config.SetDeleteValue('Options/IgnoreTrailingSpaces', tdfIgnoreTrailingSpaces in DiffFlags, False);
       if (fSelectedFile2 <> nil) and (fSelectedFile2.fFile <> nil) then
       begin
         Config.SetDeleteValue('Options/DiffText2', fSelectedFile2.fFile.Name, '');
@@ -966,7 +957,7 @@ begin
   except
     on E: Exception do
     begin
-       AddIDEMessage(mluWarning,'Saving lazdiffcomparefiles.xml failed: '+ E.Message);
+      AddIDEMessage(mluWarning, 'Saving lazdiffcomparefiles.xml failed: ' + E.Message);
     end;
   end;
   IDEDialogLayoutList.SaveLayout(Self);
@@ -975,19 +966,21 @@ end;
 procedure TDiffForm.LoadSettings;
 var
   Config: TConfigStorage;
-  Version:Integer;
-  i:integer;
-  LastText2Name:string;
+  Version: integer;
+  i: integer;
+  LastText2Name: string;
 begin
   try
-    Config := GetIDEConfigStorage('lazdiffcomparefiles.xml', true);
+    Config := GetIDEConfigStorage('lazdiffcomparefiles.xml', True);
     try
-      Version:=Config.GetValue('Version', 1);
-      OptionsGroupBox.Checked[IgnoreCaseCheckBox] :=Config.GetValue('Options/IgnoreCase', False);
-      OptionsGroupBox.Checked[IgnoreEmptyLineChangesCheckBox] :=Config.GetValue('Options/IgnoreEmptyLineChanges', False);
+      Version := Config.GetValue('Version', 1);
+      OptionsGroupBox.Checked[IgnoreCaseCheckBox] := Config.GetValue('Options/IgnoreCase', False);
+      OptionsGroupBox.Checked[IgnoreEmptyLineChangesCheckBox] :=
+        Config.GetValue('Options/IgnoreEmptyLineChanges', False);
       OptionsGroupBox.Checked[IgnoreHeadingSpacesCheckBox] := Config.GetValue('Options/IgnoreHeadingSpaces', False);
       //OptionsGroupBox.Checked[IgnoreLineEndsCheckBox] := Config.GetValue('Options/IgnoreLineEnds', False);
-      OptionsGroupBox.Checked[IgnoreSpaceCharAmountCheckBox] := Config.GetValue('Options/IgnoreSpaceCharAmount', False);
+      OptionsGroupBox.Checked[IgnoreSpaceCharAmountCheckBox] :=
+        Config.GetValue('Options/IgnoreSpaceCharAmount', False);
       OptionsGroupBox.Checked[IgnoreSpaceCharsCheckBox] := Config.GetValue('Options/IgnoreSpaceChars', False);
       OptionsGroupBox.Checked[IgnoreTrailingSpacesCheckBox] := Config.GetValue('Options/IgnoreTrailingSpaces', False);
       // get recent Text 2
@@ -1005,7 +998,7 @@ begin
   except
     on E: Exception do
     begin
-      AddIDEMessage(mluWarning,'Loading lazdiffcomparefiles.xml failed: '+ E.Message);
+      AddIDEMessage(mluWarning, 'Loading lazdiffcomparefiles.xml failed: ' + E.Message);
     end;
   end;
 end;
@@ -1031,8 +1024,8 @@ end;
 
 { TAvailableDiffFile }
 
-constructor TAvailableDiffFile.Create(const NewName: string;
-  NewEditor: TSourceEditorInterface; NewSelectionAvailable: boolean);
+constructor TAvailableDiffFile.Create(const NewName: string; NewEditor: TSourceEditorInterface;
+  NewSelectionAvailable: boolean);
 begin
   Name := NewName;
   Editor := NewEditor;

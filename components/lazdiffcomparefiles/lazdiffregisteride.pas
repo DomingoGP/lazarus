@@ -25,7 +25,7 @@ procedure Register;
 implementation
 
 uses
-  lazdiffform, lazdiffUIConsts;
+  lazdiffform, lazdiffUIConsts,IDEWindowIntf,controls;
 
 procedure DoCompareFilesMenu(Sender: TObject);
 begin
@@ -45,6 +45,8 @@ begin
     Key, nil, @DoCompareFilesMenu);
   RegisterIDEMenuCommand(itmSecondaryTools, 'LazDiffCompareFiles',
     FORMAT_CURRENT_MENU2, nil, nil, CmdMyTool);
+  // register window creator
+  IDEWindowCreators.Add(DiffFormWindowName,@CreateIDEDiffForm,nil,'1097','667','','','',alNone,true);
 end;
 
 end.

@@ -4,14 +4,12 @@ object DiffForm: TDiffForm
   Top = 187
   Width = 1097
   HelpType = htKeyword
-  BorderIcons = [biSystemMenu]
   Caption = 'Compare files'
   ClientHeight = 667
   ClientWidth = 1097
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '2.1.0.0'
   object OpenInEditorButton: TBitBtn
     AnchorSideRight.Control = CloseButton
     AnchorSideBottom.Control = Owner
